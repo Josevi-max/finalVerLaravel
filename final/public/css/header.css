@@ -1,0 +1,7 @@
+#nav {
+    box-shadow: 2px 2px 10px #666;
+}
+
+.hover:hover {
+    background-color: black;
+}

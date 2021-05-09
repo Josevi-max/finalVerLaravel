@@ -1,0 +1,14 @@
+#presentation {
+    background-image: url("../images/presentationApp.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 17%;
+}
+
+img {
+    width: 30%;
+}
+
+#img {
+    width: 100%;
+}
