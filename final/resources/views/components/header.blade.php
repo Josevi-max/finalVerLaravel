@@ -3,7 +3,7 @@
  <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 fixed-top " id="nav">
-    <a class="navbar-brand col-lg-9 m-2" href="/"><i class="fas fa-traffic-light  fa-1x"></i> AutoApp</a>
+    <a class="navbar-brand col-lg-8 m-2" href="/"><i class="fas fa-traffic-light  fa-1x"></i> AutoApp</a>
 
     <button class="navbar-toggler" type="button" " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       &#9776;
@@ -21,20 +21,8 @@
           
             @endfor
             @if (Auth::user())
-            <div class="dropdown nav-item">
-                <li class=" dropdown-toggle nav-link text-light btn hover" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-graduation-cap"></i><br>
-                Clases
-                </li>
-                
-                
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li class="dropdown-item nav-link text-dark   " href="#">Comprar</li>
-                    <li class="dropdown-item nav-link text-dark   " href="#">Reservar</li>
-                    <li class="dropdown-item nav-link text-dark   " href="#">Evaluación</li>
-                  </ul>
-              </div>
-                  <!-- Logput -->
+       
+                  <!-- Logout -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 

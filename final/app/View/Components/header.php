@@ -24,10 +24,11 @@ class header extends Component
      */
     public function render()
     {
+      
       if(Auth::user()){
-        $data=["links"=>["dashboard","#"],
-        "texts"=>["Principal","Contactanos"],
-        "icons"=>["fas fa-home","fas fa-file-signature"]];
+        $data=["links"=>["./dashboard","dashboard","dashboard"],
+        "texts"=>["Principal","Tu datos","Contactanos"],
+        "icons"=>["fas fa-home","fas fa-info-circle","fas fa-file-signature"]];
       }else{
         $data=["links"=>["/","register","login"],
         "texts"=>["Contactanos","Registrate","Iniciar sesión"],

@@ -49,29 +49,8 @@
                 <img src="{{ asset('images/whoeAreMe.jpg') }}" alt="whoAreMe" class="col-lg-6 col-12  ">
 
             </div>
-            <div class="mt-5  row ">
-                <h2 class=" text-center border-bottom col-12 mb-3"> Nuestras ofertas </h2>
-                @for ($i = 0; $i < count($infoPrices['icons']); $i++)
-
-           
-                <div class="col-lg-4 col-sm-12 card">
-
-                    <div class="card-body">
-                        <h1 class="{{ $infoPrices['icons'][$i] }} col-12 text-center"></h1>
-                        <h2 class=" card-title bg-light border-bottom text-center">{{ $infoPrices['namePacks'][$i] }}
-                        </h2>
-                        <h4 class="text-danger fs-1  text-center">{{ $infoPrices['prices'][$i] }}€</h4>
-                        <ul>
-                            <li>{{ $infoPrices['dataA'][$i] }}</li>
-                            <li>{{ $infoPrices['dataB'][$i] }}</li>
-                            <li>{{ $infoPrices['dataC'][0] }}</li>
-                        </ul>
-
-                        <a href="# " class="btn btn-primary mx-auto col-4 d-block">Comprar</a>
-                    </div>
-                </div>
-                @endfor
-            </div>
+            <h2 class=" text-center border-bottom col-12 mt-5"> Nuestras ofertas </h2>
+            <x-prices/>
 
 
 

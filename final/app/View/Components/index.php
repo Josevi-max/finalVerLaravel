@@ -33,16 +33,9 @@ class index extends Component
             "Para conducir ciclomotores de dos o tres ruedas y cuatriciclos ligeros."
             ]
             ];     
-  $infoPrices=[
-"namePacks"=>["Iniciado","Avanzado","Novel"],
-"icons"=>["far fa-grin-stars","fas fa-medal","fas fa-car"],
-"prices"=>[300,500,800],
-"dataA"=>["5 clases prácticas","15 clases prácticas","25 clases prácticas"],
-"dataB"=>[" 2 oportunidades examen"," 3 oportunidades examen ","3 oportunidades examen "],
-"dataC"=>["Semana de clases intensivas (teoríco)"]
-];
+  
 
 
-        return view('components.noLog.index',compact("infoPer","infoPrices"));
+        return view('components.noLog.index',compact("infoPer"));
     }
 }

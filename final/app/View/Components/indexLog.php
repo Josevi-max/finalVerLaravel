@@ -34,7 +34,7 @@ class indexLog extends Component
             "¿Tienes miedo de que se te olvide algo visto en la clase de hoy?¿No te quedo algo claro durante tu clase? No pasa nada, ahora puedes repasar de manera gratuita cada maniobra posible al volante o las normas de tráfico"
         ],
         "links"=>[
-            "",
+            "buy/create",
             "",
             "",
             "https://www.youtube.com/channel/UC0I1TYP76RP3E5m2dN07xQQ"
