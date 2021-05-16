@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\AddValoration;
 use App\Http\Controllers\BuyController;
-use App\View\Components\index;
-
-
+use App\Http\Controllers\ControlUsersAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,14 +15,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-base_path("");
+
 Route::get("/", function () {
     return view("components/main");
 });
+Route::get('dashboard/admin', [ControlUsersAdmin::class,"admin"])->middleware(['auth:sanctum', 'verified',"role:Admin"])->name('dashboard.admin');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
+
+Route::middleware(['auth:sanctum', 'verified', "role:Student"])->get('/dashboard', function () {
+
     return view('dashboard');
 })->name('dashboard');
 
+Route::resource('buy', BuyController::class)->only(["create", "store"])->middleware(['auth:sanctum', 'verified',"role:Student"]);
+Route::resource('valoration', AddValoration::class)->only(["create", "store"])->middleware(['auth:sanctum', 'verified',"role:Admin"]);
 
-Route::resource('buy', BuyController::class)->only(["create","store"])->middleware(['auth:sanctum', 'verified']);
+Route::get("/profile", function () {
+    return view("profile/show");
+})->middleware(['auth:sanctum', 'verified']);

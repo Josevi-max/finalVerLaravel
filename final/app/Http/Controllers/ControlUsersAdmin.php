@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class BuyController extends Controller
+class ControlUsersAdmin extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function admin()
     {
-        //
+        $users=User::paginate(10);
+        return view("components.log.admin-home",compact("users"));
     }
 
     /**
@@ -24,13 +23,9 @@ class BuyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $hecho=false;
-        if(isset($request->hecho)){
-            $hecho=$request->hecho;
-        }
-        return view('components.log.buy',compact("hecho"));
+        //
     }
 
     /**
@@ -41,20 +36,6 @@ class BuyController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $class = $user->nClases += $request->nClases;
-
-        if(isset($request->examAttempts))
-        $exam = $user->examAttempts += $request->examAttempts;
-        else
-        $exam=0;
-
-      if(DB::table('users')->where("id", $user->id)->update(["nClases" => $class,"examAttempts"=>$exam]))
-        $hecho=true;
-            
-       return  redirect()->route("buy.create",compact("hecho"));
-        //return view('components.log.buy', compact("hecho"));
-
         //
     }
 

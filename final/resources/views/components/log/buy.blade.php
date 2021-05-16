@@ -5,7 +5,7 @@
 
     @section('body')
         <main class=" container  mt-5">
-            @if (isset($hecho))
+            @if ($hecho)
             <div class="alert alert-success" role="alert">
                 La compra se realizó con exito y ya se ha añadido a su número de clases restantes
               </div>   
@@ -42,12 +42,12 @@
                     </div>
                 </div>
                 <x-data-users />
-                <h1 class="text-start mt-3 border-bottom">Packs de clases</h1>
+                <h1 class="text-center mt-3 border-bottom">Packs de clases</h1>
 
                 <x-prices />
 
 
-
+            
 
 
             </div>

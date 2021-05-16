@@ -8,17 +8,17 @@
     </x-slot>
 
     <x-slot name="form">
-     
+
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <label>Nombre:</label>
-            <x-jet-input id="name" type="text" class="mt-1 block " value="{{Auth::user()->name}}"   />
+            <x-jet-input id="name" type="text" class="mt-1 block " value="{{ Auth::user()->name }}" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <label>Email:</label> 
-           <x-jet-input id="email" type="email" class="mt-1 block w-full" value="{{Auth::user()->email}}" />
+            <label>Email:</label>
+            <x-jet-input id="email" type="email" class="mt-1 block w-full" value="{{ Auth::user()->email }}" />
         </div>
     </x-slot>
 

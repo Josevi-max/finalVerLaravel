@@ -1,6 +1,7 @@
 
 <x-app-layout>
 @section("body")
+
 <x-index/>
 
 @endsection
