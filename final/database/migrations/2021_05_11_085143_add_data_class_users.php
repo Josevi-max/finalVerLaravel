@@ -16,7 +16,7 @@ class AddDataClassUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer("classesSpent")->default(0);
             $table->integer("examAttempts")->default(0);
-            $table->boolean("theoricExamn")->default(0);
+            
 
 
         });

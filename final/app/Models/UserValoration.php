@@ -29,7 +29,6 @@ class UserValoration extends Model
         "safeDriving",
         "teacherId",
         "studentId"
-        
     ];
     
 }

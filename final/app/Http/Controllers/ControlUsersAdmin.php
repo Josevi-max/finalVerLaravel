@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ControlUsersAdmin extends Controller
 {
@@ -12,11 +13,35 @@ class ControlUsersAdmin extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin()
+    public function admin($searchs=null)
     {
-        $users=User::paginate(10);
-        return view("components.log.admin-home",compact("users"));
+        
+        $users = User::paginate(10);
+       if($searchs!=null){
+           $users=DB::table('users')->where('name', 'like', "%" .$searchs . "%")->paginate(10);
+           
+        }
+        
+
+        $nUsers = count(User::all());
+        return view("components.log.admin-home", compact("users", "nUsers"));
     }
+
+    public function search(Request $nameUser)
+    {
+
+      /*  if($nameUser->search==null){
+            return redirect(route("dashboard.admin"));
+        }*/
+
+            $searchs =$nameUser->search;
+            
+        
+       return redirect(route("dashboard.admin",compact("searchs")));
+     //   $nUsers = count(User::all());
+      //  return view("components.log.admin-home", compact("users", "nUsers"));
+    }
+
 
     /**
      * Show the form for creating a new resource.

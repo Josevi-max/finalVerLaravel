@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
+
+
 class AddValoration extends Controller
 {
 
@@ -20,7 +23,7 @@ class AddValoration extends Controller
     public function create(Request $id)
     {
         $user = User::find($id);
-        $valorations = UserValoration::where("studentId",$user[0]->id)->get();
+        $valorations = UserValoration::where("studentId", $user[0]->id)->get();
         return view("components.log.valorations", compact("user", "valorations"));
     }
 
@@ -33,11 +36,24 @@ class AddValoration extends Controller
 
     public function store(Request $request)
     {
-        $user=$request->studentId;
+        $user = $request->studentId;
     
-           
+        
+            $note = 0;
+
+            foreach ($request->except(['_token', "teacherId", "studentId"]) as $value) {
+
+                if ($value > 0)
+                    $note += (int)$value;
+            }
+
+             $note /= 15;
        
-          if (UserValoration::where('studentId', '=', $user)->exists()) {
+
+
+
+
+        if (UserValoration::where('studentId', '=', $user)->exists()) {
             DB::table("user_valorations")->where('studentId', '=', $user)
                 ->update([
                     "preliminaryChecks" => $request->preliminaryChecks,
@@ -54,16 +70,15 @@ class AddValoration extends Controller
                     "lights" => $request->lights,
                     "controlsOperation" => $request->controlsOperation,
                     "otherControls" => $request->otherControls,
-
                     "safeDriving" => $request->safeDriving,
-                    "comments" => $request->comments
+                    "comments" => $request->comments,
+                    "note" =>$note
 
                 ]);
         } else {
 
             DB::table("user_valorations")
                 ->insert([
-                    "preliminaryChecks" => $request->preliminaryChecks,
                     "preliminaryChecks" => $request->preliminaryChecks,
                     "installationVehicle" => $request->installationVehicle,
                     "incorporationCirculation" => $request->incorporationCirculation,
@@ -78,17 +93,20 @@ class AddValoration extends Controller
                     "lights" => $request->lights,
                     "controlsOperation" => $request->controlsOperation,
                     "otherControls" => $request->otherControls,
-
                     "safeDriving" => $request->safeDriving,
                     "comments" => $request->comments,
-                    "studentId" => $user,
-                    "teacherId" => Auth::user()->id
+                    "teacherId" => $request->teacherId,
+                    "studentId" => $request->studentId,
+                    "note" =>$note,
+
+                    //$request->except(['_token'])
+
+                    
                 ]);
         }
-      
+
 
 
         return  redirect()->route("dashboard.admin");
-        
     }
 }

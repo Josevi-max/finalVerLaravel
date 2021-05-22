@@ -34,13 +34,13 @@ class header extends Component
       $role = $userb->roles->first()->name;
       if ($role == 'Student') {
         $data = [
-          "links" => [route("dashboard"), route("profile.show"), "/"],
+          "links" => [route("dashboard"), route("profile.edit",Auth::user()->id), "/"],
           "texts" => ["Panel", "Tu datos", "Contactanos"],
           "icons" => ["fas fa-home", "fas fa-info-circle", "fas fa-file-signature"]
         ];
       } else {
         $data = [
-          "links" => [route("dashboard.admin"), route("profile.show")],
+          "links" => [route("dashboard.admin"), route("profile.edit",Auth::user()->id)],
           "texts" => ["Alumnos", "Tu datos"],
           "icons" => ["fas fa-user-graduate", "fas fa-info-circle"]
         ];

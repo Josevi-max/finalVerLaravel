@@ -5,6 +5,13 @@
     
         <main class="container">
             <h1>Gestión de usuarios</h1>
+            <h2>Número de usuarios actuales: {{$nUsers}}</h2>
+            <form action="{{ route('dashboard.search') }}" method="POST">
+                @csrf
+                <input type="text" name="search" placeholder="Buscar usuarios">
+                <input type="submit">
+
+            </form>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -25,9 +32,9 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>
-
+                                <a href="{{ route('profile.edit',  $item->id) }}"> 
                                     <button class="btn btn-primary">Editar</button>
-
+                                </a>
                                 </td>
                                 <td>
                                     <a href={{ route('valoration.create', ['id' => $item->id]) }}>

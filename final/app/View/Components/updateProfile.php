@@ -1,6 +1,7 @@
 <?php
 
 namespace App\View\Components;
+use App\Models\User;
 
 use Illuminate\View\Component;
 
@@ -23,6 +24,7 @@ class updateProfile extends Component
      */
     public function render()
     {
+        $user=User::find(5);
         return view('profile.update-profile');
     }
 }

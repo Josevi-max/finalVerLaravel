@@ -22,13 +22,21 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        return [
+
+        $user = User::create([
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '123456789', // password
+            'password' => bcrypt('123456789')
+        ]);
+        // Asignación del rol
+        $user->assignRole('Student');
+
+        
+        return [
+            $user
             
         ];
+        
     }
 
     /**

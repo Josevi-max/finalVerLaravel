@@ -32,11 +32,12 @@ class CreateUserValoration extends Migration
             $table->integer("controlsOperation")->nullable();
             $table->integer("otherControls")->nullable();
             $table->integer("safeDriving")->nullable();
+            $table->integer("note")->nullable();
 
             $table->Biginteger('studentId')->unsigned();
             $table->foreign('studentId')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
 
-            $table->Biginteger('teacherId')->unsigned()->unique();
+            $table->Biginteger('teacherId')->unsigned();
             $table->foreign('teacherId')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
 
 
