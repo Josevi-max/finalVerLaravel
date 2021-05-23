@@ -5,12 +5,23 @@
 
     @section('body')
         <main>
+
             <div class="container mt-5">
+
+                <x-jet-validation-errors class="  text-start alert alert-danger " />
+               
+                @if (session("enviado"))
+                    <div class="alert alert-success" role="alert">
+                        {{ session("enviado") }}
+                    </div>
+                @endif
+
 
                 @if ($user->hasRole('Student'))
                     <x-data-users />
 
                 @endif
+                
 
                 <form action="{{ route('profile.update', $user->id) }}" method="POST">
                     @csrf
@@ -68,6 +79,7 @@
 
                         </div>
                     @endif
+                    <input type="hidden" name="correctPassword" value="false" >
                     <div class="col-12">
                         <input type="submit" class="btn btn-success" value="Actualizar">
                     </div>
@@ -79,7 +91,7 @@
                     @method("DELETE")
 
                     <button type="submit" class="btn btn-danger" onclick="
-                    return confirm('¿Estas seguro de querer borrar esta cuenta?')">Eliminar cuenta</button>
+                        return confirm('¿Estas seguro de querer borrar esta cuenta?')">Eliminar cuenta</button>
 
                 </form>
 

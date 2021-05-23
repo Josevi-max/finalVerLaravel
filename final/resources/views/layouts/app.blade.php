@@ -15,19 +15,22 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <!--jquery-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<link rel="icon" href="{{ asset('images/favicon.png') }}">
+ 
+
+    <link rel="icon" href="{{ asset('images/favicon.png') }}">
 
     <title>Autoapp</title>
 </head>
 
 <body>
-    <x-header/>
-
-    @yield('body')
-    <x-footer/>
+    <x-header />
+   
+        @yield('body')
+   
+    <x-footer />
 </body>
 
 </html>

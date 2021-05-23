@@ -20,47 +20,7 @@ function roleUser()
 }
 class updateInfoUser extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -70,13 +30,15 @@ class updateInfoUser extends Controller
      */
     public function edit($id)
     {
-
+        
+        
         $user = User::findOrFail($id);
         /*   $actualUser=User::find(Auth::user()->id);
         $admin=$actualUser->roles()->get();*/
+       
 
         if ($user->id == Auth::user()->id || roleUser() == "Admin") {
-            return view("profile.show", compact("user"));
+            return view("profile.show", compact("user"))->with(session("enviado")?session("enviado"):null);
         } else {
             return view("dashboard");
         }
@@ -94,17 +56,24 @@ class updateInfoUser extends Controller
 
         $user = User::find($id);
         $password = $user->password;
-        $actualizado = false;
+       
+        
+       
 
-
-        //return var_dump($request->input('admin'));
-
-
-
-        if ((Hash::check($request->input('actualPassword'), $user->password) || roleUser()) && $request->input('newPassword') == $request->input('newPassword2') && !empty($request->input('newPassword'))) {
+        if ((Hash::check($request->input('actualPassword'), $user->password) || roleUser()=="Admin") && $request->input('newPassword') == $request->input('newPassword2') && !empty($request->input('newPassword'))) {
             $password = bcrypt($request->input('newPassword'));
-            $actualizado = true;
+            $request['correctPassword'] = true;
+            
         }
+        if($request->input('actualPassword')==null && $request->input('newPassword')==null && $request->input('newPassword2')==null){
+            $request['correctPassword'] = true;
+        }
+        
+        $request->validate([
+            "name"=> "required",
+            "email" => "required|email",
+            "correctPassword" => "accepted"
+        ]);
         $user->update([
             "name" => $request->input('name'),
             'email' => $request->input('email'),
@@ -119,8 +88,11 @@ class updateInfoUser extends Controller
             $user->removeRole("Admin");
             $user->assignRole("Student");
         }
+       
+            return redirect(route("profile.edit", $user->id))->with("enviado","Los datos se han actalizado satisfactoriamente");
 
-        return redirect(route("profile.edit", $user->id));
+       
+        
     }
 
     /**

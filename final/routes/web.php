@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\AddValoration;
 use App\Http\Controllers\BuyController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ControlUsersAdmin;
 use App\Http\Controllers\updateInfoUser;
+use App\Http\Controllers\valorationStudent;
+use App\Http\Middleware\noAdmin;
+use App\Mail\ContactMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +38,11 @@ Route::middleware(['auth:sanctum', 'verified', "role:Student"])->get('/dashboard
 Route::resource('buy', BuyController::class)->only(["create", "store"])->middleware(['auth:sanctum', 'verified',"role:Student"]);
 Route::resource('valoration', AddValoration::class)->only(["create", "store"])->middleware(['auth:sanctum', 'verified',"role:Admin"]);
 
-//Route::get("/profile/{id}",  [updateInfoUser::class,"edit"])->middleware(['auth:sanctum', 'verified'])->name("profile");
 
 Route::resource('profile', updateInfoUser::class)->only(["edit", "update","destroy"])->middleware(['auth:sanctum', 'verified']);
+
+Route::resource('contact', ContactController::class);
+
+Route::resource('evaluation', valorationStudent::class)->only(["index"])->middleware(['auth:sanctum', 'verified',"role:Student"]);
+
+

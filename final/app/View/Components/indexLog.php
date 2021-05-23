@@ -36,7 +36,7 @@ class indexLog extends Component
         "links"=>[
             "buy/create",
             "",
-            "",
+            "evaluation",
             "https://www.youtube.com/channel/UC0I1TYP76RP3E5m2dN07xQQ"
         ]
         ];

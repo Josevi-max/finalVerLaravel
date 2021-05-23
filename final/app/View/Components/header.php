@@ -33,8 +33,8 @@ class header extends Component
 
       $role = $userb->roles->first()->name;
       if ($role == 'Student') {
-        $data = [
-          "links" => [route("dashboard"), route("profile.edit",Auth::user()->id), "/"],
+        $data = [ 
+          "links" => [route("dashboard"), route("profile.edit",Auth::user()->id), route("contact.index")],
           "texts" => ["Panel", "Tu datos", "Contactanos"],
           "icons" => ["fas fa-home", "fas fa-info-circle", "fas fa-file-signature"]
         ];
@@ -47,7 +47,7 @@ class header extends Component
       }
     } else {
       $data = [
-        "links" => ["/", "register", "login"],
+        "links" => [route("contact.index"), "register", "login"],
         "texts" => ["Contactanos", "Registrate", "Iniciar sesión"],
         "icons" => ["fas fa-file-signature", "far fa-user-circle", "far fa-id-card"]
       ];

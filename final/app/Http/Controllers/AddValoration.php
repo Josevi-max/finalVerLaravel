@@ -24,7 +24,46 @@ class AddValoration extends Controller
     {
         $user = User::find($id);
         $valorations = UserValoration::where("studentId", $user[0]->id)->get();
-        return view("components.log.valorations", compact("user", "valorations"));
+        $info=[
+            "name"=>[
+                "Comprobaciones previas",
+                "Instalación en el vehiculo",
+                "Incorporación a la circulación",
+                "Progresión normal",
+                "Desplazamiento lateral",
+                "Adelantamientos",
+                "Intersecciones",
+                "Cambio de sentido",
+                "Paradas",
+                "Estacionamientos",
+                "Obediencia de las señales",
+                "Utilización de las luces",
+                "Manejo de los mandos",
+                "Otros controles",
+                "Conducción segura",
+                "Comentarios"
+              ],
+              "type"=>[
+                "preliminaryChecks",
+                "installationVehicle",
+                "incorporationCirculation",
+                "normalProgression",
+                "sideShift",
+                "overTaking",
+                "intersections",
+                "changeDirection",
+                "stops",
+                "parking",
+                "obedienceSigns",
+                "lights",
+                "controlsOperation",
+                "otherControls",
+                "safeDriving",
+                "comments"
+              ]
+            
+        ];
+        return view("components.log.valorations", compact("user", "valorations","info"));
     }
 
     /**
@@ -72,14 +111,15 @@ class AddValoration extends Controller
                     "otherControls" => $request->otherControls,
                     "safeDriving" => $request->safeDriving,
                     "comments" => $request->comments,
-                    "note" =>$note
-
+                    "note" =>$note,
+                    
+                  //  $request->except(['_token',"teacherId","studentId","note"])
                 ]);
         } else {
 
             DB::table("user_valorations")
                 ->insert([
-                    "preliminaryChecks" => $request->preliminaryChecks,
+                   /* "preliminaryChecks" => $request->preliminaryChecks,
                     "installationVehicle" => $request->installationVehicle,
                     "incorporationCirculation" => $request->incorporationCirculation,
                     "normalProgression" => $request->normalProgression,
@@ -96,17 +136,18 @@ class AddValoration extends Controller
                     "safeDriving" => $request->safeDriving,
                     "comments" => $request->comments,
                     "teacherId" => $request->teacherId,
-                    "studentId" => $request->studentId,
-                    "note" =>$note,
+                    "studentId" => $request->studentId,*/
+                    $request->except(['_token',"note"]),
+                    "note" =>$note
 
-                    //$request->except(['_token'])
+                   
 
                     
                 ]);
         }
 
+        
 
-
-        return  redirect()->route("dashboard.admin");
+        return  redirect()->route("valoration.create",['id' => $user])->with("enviado","Los datos se agregaron correctamente");
     }
 }

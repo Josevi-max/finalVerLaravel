@@ -25,7 +25,7 @@ class footer extends Component
     {
       
         $contactData=["types"=>["Dirección","Teléfono","Email"],
-        "infos"=>["Av. de Carlos III, 380, 04720 Aguadulce, Almería","950 04 02 08","info@gmail.com"]];
+        "infos"=>["Av. de Carlos III, 380, 04720 Aguadulce, Almería","950 04 02 08","josevi@autoapp.com"]];
 
         $socialNetworks=["icons"=>["fab fa-facebook","fab fa-twitter"],
         "links"=>["https://es-es.facebook.com/autoescuelaquiros/","https://twitter.com/autoescuelalara?lang=es"]];
