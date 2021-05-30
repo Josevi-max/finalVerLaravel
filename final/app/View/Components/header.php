@@ -33,16 +33,26 @@ class header extends Component
 
       $role = $userb->roles->first()->name;
       if ($role == 'Student') {
-        $data = [ 
-          "links" => [route("dashboard"), route("profile.edit",Auth::user()->id), route("contact.index")],
-          "texts" => ["Panel", "Tu datos", "Contactanos"],
-          "icons" => ["fas fa-home", "fas fa-info-circle", "fas fa-file-signature"]
+        $data = [
+          "links" => [route("dashboard"),  route("contact.index")],
+          "texts" => ["Panel", "Contactanos"],
+          "icons" => ["fas fa-home",  "fas fa-file-signature"],
+          "management" => [
+            "texts" => ["Clases", "Organización", "Evaluación", "Multimedía"],
+            "icons" => ["fas fa-credit-card", "fas fa-calendar-week", "fas fa-check-square", "fas fa-chalkboard-teacher"],
+            "links" => [
+              route("buy.create"),
+              route("management.create"),
+             route("evaluation.index"),
+              "https://www.youtube.com/channel/UC0I1TYP76RP3E5m2dN07xQQ"
+            ]
+          ]
         ];
       } else {
         $data = [
-          "links" => [route("dashboard.admin"), route("profile.edit",Auth::user()->id)],
-          "texts" => ["Alumnos", "Tu datos"],
-          "icons" => ["fas fa-user-graduate", "fas fa-info-circle"]
+          "links" => [route("dashboard.admin")],
+          "texts" => ["Alumnos"],
+          "icons" => ["fas fa-user-graduate"]
         ];
       }
     } else {

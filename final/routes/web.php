@@ -4,6 +4,7 @@ use App\Http\Controllers\AddValoration;
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ControlUsersAdmin;
+use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\updateInfoUser;
 use App\Http\Controllers\valorationStudent;
 use App\Http\Middleware\noAdmin;
@@ -25,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", function () {
     return view("components/main");
 });
-Route::get('dashboard/admin/{searchs?}', [ControlUsersAdmin::class,"admin"])->middleware(['auth:sanctum', 'verified',"role:Admin"])->name('dashboard.admin');
 
-Route::post('dashboard/search', [ControlUsersAdmin::class,"search"])->middleware(['auth:sanctum', 'verified',"role:Admin"])->name('dashboard.search');
+Route::get('dashboard/admin/', [ControlUsersAdmin::class,"admin"])->middleware(['auth:sanctum', 'verified',"role:Admin"])->name('dashboard.admin');
+
 
 
 Route::middleware(['auth:sanctum', 'verified', "role:Student"])->get('/dashboard', function () {
@@ -37,6 +38,8 @@ Route::middleware(['auth:sanctum', 'verified', "role:Student"])->get('/dashboard
 
 Route::resource('buy', BuyController::class)->only(["create", "store"])->middleware(['auth:sanctum', 'verified',"role:Student"]);
 Route::resource('valoration', AddValoration::class)->only(["create", "store"])->middleware(['auth:sanctum', 'verified',"role:Admin"]);
+
+Route::resource('management',ManagementController::class)->only(["create","store"])->middleware(['auth:sanctum', 'verified',"role:Student"]);
 
 
 Route::resource('profile', updateInfoUser::class)->only(["edit", "update","destroy"])->middleware(['auth:sanctum', 'verified']);

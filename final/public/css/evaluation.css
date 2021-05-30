@@ -1,0 +1,94 @@
+#presentation {
+    padding-top: 10%;
+    background-image: url("../images/backNote.jpg");
+    background-position: center;
+    background-size: cover;
+    background-size: cover;
+    padding-bottom: 5%;
+    color: white;
+}
+
+#img {
+    width: 15%;
+}
+
+#title {
+    font-weight: bold;
+}
+
+#commentary {
+    padding-top: 10%;
+    background-image: url("../images/commentaryBack.jpg");
+    background-size: cover;
+    padding-bottom: 25%;
+}
+
+.text {
+    margin-left: 60%;
+    font-family: 'Architects Daughter', cursive;
+}
+
+#parrafe {
+    font-size: 160%;
+}
+
+@media(max-width:1200px) {
+    #commentary {
+        padding-right: 15%;
+        color: black;
+        padding-top: 20%;
+        background-image: url("../images/commentaryBackTablet.jpg");
+        background-position: center;
+        background-size: cover;
+        padding-bottom: 25%;
+    }
+}
+
+@media (max-width: 768px) {
+    #presentation {
+        padding-top: 7%;
+    }
+    .text {
+        padding-left: 5%;
+        text-align: justify;
+        margin-left: 0%;
+    }
+    #title {
+        color: black;
+        font-weight: bold;
+    }
+    #img {
+        width: 25%;
+    }
+    #commentary {
+        padding: 0;
+        padding-bottom: 15%;
+        width: 100%;
+        color: black;
+        background-image: url("../images/commentaryBackMovile.jpg");
+    }
+}
+
+
+/*
+@media (max-width: 1360px) {
+    #commentary {
+        color: white;
+        padding-top: 20%;
+        background-image: url("../images/commentaryBackTablet.jpg");
+        background-position: center;
+        background-size: cover;
+        padding-bottom: 25%;
+    }
+}
+
+@media (max-width: 434px) {
+    #commentary {
+        color: black;
+        padding-top: 20%;
+        background-image: url("../images/commentaryBackMovile.png");
+        background-position: center;
+        background-size: cover;
+        padding-bottom: 25%;
+    }
+}

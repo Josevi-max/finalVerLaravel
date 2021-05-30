@@ -4,9 +4,15 @@
         <br><br>
         <h1 class="text-center mt-5">Estas dentro de las valoraciones del usuario {{ $user[0]->name }} </h1>
         @if (session('enviado'))
-            <div class="alert alert-success text-center" role="alert">
-                {{ session('enviado') }}
-            </div>
+            @if (session('enviado')=="true")
+                <div class="alert alert-success text-center" role="alert">
+                    Los datos se agregaron correctamente
+                </div>
+            @else
+                <div class="alert alert-danger text-center" role="alert">
+                    Parece que algo fallo, es posible que no estes a cargo de este usuario
+                </div>
+            @endif
         @endif
         <form action="{{ route('valoration.store') }}" method="POST">
             @csrf
@@ -32,8 +38,11 @@
             <input type="hidden" name="studentId" value="{{ $user[0]->id }}">
 
             <input type="submit" value="Confirmar">
-            
+            @if (isset($can))
+                <p>{{var_dump($can) }}</p>
+            @endif
         </form>
+
     @endsection
 </x-app-layout>
 <script type="text/javascript" src="{{ asset('js/checkNotes.js') }}">

@@ -1,9 +1,9 @@
 <link rel="stylesheet" href={{ asset('css/buy.css') }}>
 
-<script src="{{ asset('js/buy.js') }}"></script>
 <x-app-layout>
 
     @section('body')
+
         <main class=" container  mt-5">
             @if ($hecho)
             <div class="alert alert-success" role="alert">
@@ -32,10 +32,10 @@
                                     ea quam error optio. Maxime atque, voluptatum animi temporibus autem impedit.</p>
                                 <form action="{{ route('buy.store') }}" class="text-center" method="POST">
                                     @csrf
-
-                                    <input type="number" value="1" name="nClases">
+                                    <div class="input-group ">
+                                    <input type="number"  class="form-control " value="1" name="nClases" min="0">
                                     <input type="submit" class="btn btn-primary fas" value="Comprar">
-
+                                </div>
                                 </form>
                             </div>
                         </div>
@@ -53,6 +53,9 @@
             </div>
 
         </main>
+        <script src="{{ asset('js/buy.js') }}"></script>
+
     @endsection
+  
 
 </x-app-layout>

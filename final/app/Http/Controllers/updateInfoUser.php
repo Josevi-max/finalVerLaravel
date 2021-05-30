@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -20,7 +21,7 @@ function roleUser()
 }
 class updateInfoUser extends Controller
 {
-   
+
 
     /**
      * Show the form for editing the specified resource.
@@ -30,15 +31,15 @@ class updateInfoUser extends Controller
      */
     public function edit($id)
     {
-        
-        
+
+
         $user = User::findOrFail($id);
         /*   $actualUser=User::find(Auth::user()->id);
         $admin=$actualUser->roles()->get();*/
-       
+
 
         if ($user->id == Auth::user()->id || roleUser() == "Admin") {
-            return view("profile.show", compact("user"))->with(session("enviado")?session("enviado"):null);
+            return view("profile.show", compact("user"))->with(session("enviado") ? session("enviado") : null);
         } else {
             return view("dashboard");
         }
@@ -56,21 +57,20 @@ class updateInfoUser extends Controller
 
         $user = User::find($id);
         $password = $user->password;
-       
-        
-       
 
-        if ((Hash::check($request->input('actualPassword'), $user->password) || roleUser()=="Admin") && $request->input('newPassword') == $request->input('newPassword2') && !empty($request->input('newPassword'))) {
+
+
+
+        if ((Hash::check($request->input('actualPassword'), $user->password) || roleUser() == "Admin") && $request->input('newPassword') == $request->input('newPassword2') && !empty($request->input('newPassword'))) {
             $password = bcrypt($request->input('newPassword'));
             $request['correctPassword'] = true;
-            
         }
-        if($request->input('actualPassword')==null && $request->input('newPassword')==null && $request->input('newPassword2')==null){
+        if ($request->input('actualPassword') == null && $request->input('newPassword') == null && $request->input('newPassword2') == null) {
             $request['correctPassword'] = true;
         }
-        
+
         $request->validate([
-            "name"=> "required",
+            "name" => "required",
             "email" => "required|email",
             "correctPassword" => "accepted"
         ]);
@@ -88,11 +88,23 @@ class updateInfoUser extends Controller
             $user->removeRole("Admin");
             $user->assignRole("Student");
         }
-       
-            return redirect(route("profile.edit", $user->id))->with("enviado","Los datos se han actalizado satisfactoriamente");
 
-       
-        
+        if ($request->input("studentMana") != null) {
+            if (DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->first()==false) {
+                DB::table('table_teacher_students')->insert([
+
+                    "teacherId" => Auth::user()->id,
+                    "studentId" => $request->input("studentId")
+
+                ]);
+            }
+        }else{
+            
+                DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->delete();
+              
+            
+        }
+        return redirect(route("profile.edit", $user->id))->with("enviado", "Los datos se han actalizado satisfactoriamente");
     }
 
     /**

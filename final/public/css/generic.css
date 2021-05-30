@@ -1,6 +1,5 @@
-main {
-    background-size: cover;
-    background-position: center;
-    padding: 5%;
-    text-align: center;
+.box {
+    box-shadow: 5px 2px 10px #555;
+    width: 50%;
+    background-color: white;
 }

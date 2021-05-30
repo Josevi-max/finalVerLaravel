@@ -1,6 +1,7 @@
 
-<div class="row">
+<div class="row ">
     @for ($i = 0; $i < count($data["names"]); $i++)
+    
     <div class=" card  col-lg-4 col-sm-12">
         <h2 class="card-header text-center">{{$data["names"][$i]}}</h2>
         <div class="card-body">

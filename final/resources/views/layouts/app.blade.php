@@ -12,25 +12,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
     </script>
+
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
- 
-
-    <link rel="icon" href="{{ asset('images/favicon.png') }}">
+    <!--CSS generico-->
+    <link rel="stylesheet" href="{{ asset('css/generic.css') }}">
 
     <title>Autoapp</title>
+    
 </head>
 
 <body>
     <x-header />
-   
-        @yield('body')
-   
+
+    @yield('body')
+
     <x-footer />
+
 </body>
 
 </html>

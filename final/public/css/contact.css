@@ -1,0 +1,18 @@
+main {
+    background-size: cover;
+    background-position: center;
+    padding-top: 2%;
+    text-align: center;
+}
+
+#header {
+    padding-top: 10%;
+    background: #0061f2;
+    color: white;
+}
+
+#form {
+    box-shadow: 5px 2px 10px #555;
+    width: 50%;
+    background-color: white;
+}

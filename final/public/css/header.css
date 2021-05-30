@@ -5,3 +5,9 @@
 .hover:hover {
     background-color: black;
 }
+
+@media(max-width:992px) {
+    .btnUser {
+        text-align: center;
+    }
+}

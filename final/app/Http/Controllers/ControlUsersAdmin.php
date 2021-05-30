@@ -13,99 +13,21 @@ class ControlUsersAdmin extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin($searchs=null)
-    {
-        
-        $users = User::paginate(10);
-       if($searchs!=null){
-           $users=DB::table('users')->where('name', 'like', "%" .$searchs . "%")->paginate(10);
-           
-        }
-        
+    public function admin(Request $request){
 
-        $nUsers = count(User::all());
-        return view("components.log.admin-home", compact("users", "nUsers"));
-    }
-
-    public function search(Request $nameUser)
-    {
-
-      /*  if($nameUser->search==null){
-            return redirect(route("dashboard.admin"));
-        }*/
-
-            $searchs =$nameUser->search;
+        $users = User::paginate(9);
+        $searchs=$request->query("search");
+        if($searchs){
+            $users=DB::table('users')->where('name', 'like', "%" .$searchs . "%")->orWhere('email', 'like', "%" .$searchs . "%")->paginate(9);
             
-        
-       return redirect(route("dashboard.admin",compact("searchs")));
-     //   $nUsers = count(User::all());
-      //  return view("components.log.admin-home", compact("users", "nUsers"));
+         }
+         
+ 
+         $nUsers = count(User::all());
+         return view("components.log.admin-home", compact("users", "nUsers"));
+   
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+ 
+ 
 }

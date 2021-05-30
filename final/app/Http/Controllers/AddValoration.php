@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
-
+function canValoration($id)
+{
+    $result = false;
+    if (DB::table('table_teacher_students')->where('studentId', "=", $id)->where('teacherId', "=", Auth::user()->id)->exists()) {
+        $result = true;
+    }
+    return $result;
+}
 
 class AddValoration extends Controller
 {
@@ -22,10 +29,12 @@ class AddValoration extends Controller
      */
     public function create(Request $id)
     {
+
         $user = User::find($id);
+        $can = canValoration($user[0]->id);
         $valorations = UserValoration::where("studentId", $user[0]->id)->get();
-        $info=[
-            "name"=>[
+        $info = [
+            "name" => [
                 "Comprobaciones previas",
                 "Instalación en el vehiculo",
                 "Incorporación a la circulación",
@@ -42,8 +51,8 @@ class AddValoration extends Controller
                 "Otros controles",
                 "Conducción segura",
                 "Comentarios"
-              ],
-              "type"=>[
+            ],
+            "type" => [
                 "preliminaryChecks",
                 "installationVehicle",
                 "incorporationCirculation",
@@ -60,10 +69,10 @@ class AddValoration extends Controller
                 "otherControls",
                 "safeDriving",
                 "comments"
-              ]
-            
+            ]
+
         ];
-        return view("components.log.valorations", compact("user", "valorations","info"));
+        return view("components.log.valorations", compact("user", "valorations", "info", "can"));
     }
 
     /**
@@ -75,9 +84,12 @@ class AddValoration extends Controller
 
     public function store(Request $request)
     {
+
         $user = $request->studentId;
-    
-        
+            $enviado="false";
+        if (canValoration($user)) {
+            $enviado="true";
+
             $note = 0;
 
             foreach ($request->except(['_token', "teacherId", "studentId"]) as $value) {
@@ -86,68 +98,67 @@ class AddValoration extends Controller
                     $note += (int)$value;
             }
 
-             $note /= 15;
-       
+            $note /= 15;
 
 
 
 
-        if (UserValoration::where('studentId', '=', $user)->exists()) {
-            DB::table("user_valorations")->where('studentId', '=', $user)
-                ->update([
-                    "preliminaryChecks" => $request->preliminaryChecks,
-                    "installationVehicle" => $request->installationVehicle,
-                    "incorporationCirculation" => $request->incorporationCirculation,
-                    "normalProgression" => $request->normalProgression,
-                    "sideShift" => $request->sideShift,
-                    "overTaking" => $request->overTaking,
-                    "intersections" => $request->intersections,
-                    "changeDirection" => $request->changeDirection,
-                    "stops" => $request->stops,
-                    "parking" => $request->parking,
-                    "obedienceSigns" => $request->obedienceSigns,
-                    "lights" => $request->lights,
-                    "controlsOperation" => $request->controlsOperation,
-                    "otherControls" => $request->otherControls,
-                    "safeDriving" => $request->safeDriving,
-                    "comments" => $request->comments,
-                    "note" =>$note,
-                    
-                  //  $request->except(['_token',"teacherId","studentId","note"])
-                ]);
-        } else {
 
-            DB::table("user_valorations")
-                ->insert([
-                   /* "preliminaryChecks" => $request->preliminaryChecks,
-                    "installationVehicle" => $request->installationVehicle,
-                    "incorporationCirculation" => $request->incorporationCirculation,
-                    "normalProgression" => $request->normalProgression,
-                    "sideShift" => $request->sideShift,
-                    "overTaking" => $request->overTaking,
-                    "intersections" => $request->intersections,
-                    "changeDirection" => $request->changeDirection,
-                    "stops" => $request->stops,
-                    "parking" => $request->parking,
-                    "obedienceSigns" => $request->obedienceSigns,
-                    "lights" => $request->lights,
-                    "controlsOperation" => $request->controlsOperation,
-                    "otherControls" => $request->otherControls,
-                    "safeDriving" => $request->safeDriving,
-                    "comments" => $request->comments,
-                    "teacherId" => $request->teacherId,
-                    "studentId" => $request->studentId,*/
-                    $request->except(['_token',"note"]),
-                    "note" =>$note
+            if (UserValoration::where('studentId', '=', $user)->exists()) {
+                DB::table("user_valorations")->where('studentId', '=', $user)
+                    ->update([
+                        "preliminaryChecks" => $request->preliminaryChecks,
+                        "installationVehicle" => $request->installationVehicle,
+                        "incorporationCirculation" => $request->incorporationCirculation,
+                        "normalProgression" => $request->normalProgression,
+                        "sideShift" => $request->sideShift,
+                        "overTaking" => $request->overTaking,
+                        "intersections" => $request->intersections,
+                        "changeDirection" => $request->changeDirection,
+                        "stops" => $request->stops,
+                        "parking" => $request->parking,
+                        "obedienceSigns" => $request->obedienceSigns,
+                        "lights" => $request->lights,
+                        "controlsOperation" => $request->controlsOperation,
+                        "otherControls" => $request->otherControls,
+                        "safeDriving" => $request->safeDriving,
+                        "comments" => $request->comments,
+                        "note" => $note,
 
-                   
+                        //  $request->except(['_token',"teacherId","studentId","note"])
+                    ]);
+            } else {
 
-                    
-                ]);
+                DB::table("user_valorations")
+                    ->insert([
+                        "preliminaryChecks" => $request->preliminaryChecks,
+                        "installationVehicle" => $request->installationVehicle,
+                        "incorporationCirculation" => $request->incorporationCirculation,
+                        "normalProgression" => $request->normalProgression,
+                        "sideShift" => $request->sideShift,
+                        "overTaking" => $request->overTaking,
+                        "intersections" => $request->intersections,
+                        "changeDirection" => $request->changeDirection,
+                        "stops" => $request->stops,
+                        "parking" => $request->parking,
+                        "obedienceSigns" => $request->obedienceSigns,
+                        "lights" => $request->lights,
+                        "controlsOperation" => $request->controlsOperation,
+                        "otherControls" => $request->otherControls,
+                        "safeDriving" => $request->safeDriving,
+                        "comments" => $request->comments,
+                        "teacherId" => $request->teacherId,
+                        "studentId" => $request->studentId,
+                        /* $request->except(['_token',"note"]),*/
+                        "note" => $note
+
+
+
+
+                    ]);
+            }
         }
-
-        
-
-        return  redirect()->route("valoration.create",['id' => $user])->with("enviado","Los datos se agregaron correctamente");
+        return  redirect()->route("valoration.create", ['id' => $user])->with("enviado",$enviado);
+       // return  redirect()->route("valoration.create", ['id' => $user])->with("enviado", "Los datos se agregaron correctamente");
     }
 }
