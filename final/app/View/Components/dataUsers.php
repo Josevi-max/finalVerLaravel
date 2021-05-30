@@ -27,7 +27,7 @@ class dataUsers extends Component
         $user=Auth::user();
         
         $data=[
-            "names"=>["Clases restantes","Clases tomadas","Oportunidades"],
+            "names"=>["Clases restantes","Clases gastadas","Oportunidades"],
             "icons"=>["fas fa-user-alt","fas fa-car","fas fa-smile"],
             "values"=>[$user->nClases,$user->classesSpent,$user->examAttempts]
         ];

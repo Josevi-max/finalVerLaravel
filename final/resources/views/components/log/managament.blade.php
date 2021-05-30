@@ -1,3 +1,4 @@
+<!--
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script type="text/javascript"
@@ -6,18 +7,17 @@
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+-->
 
 <x-app-layout>
     @section('body')
     
-     
+
+        @php
+            $date = date('Y-m-d');
+        @endphp
+
         <div class="container pt-5">
-
-
-            
-
-
-
 
             @if (!is_null(session('management')))
                 @if (session('management') == 'true')
@@ -36,7 +36,7 @@
 
             <div class=" py-5 pt-5">
                 <header class="text-center">
-                    <h1 class="display-4 font-weight-bold">Evaluaciones</h1>
+                    <h1 class="display-4 font-weight-bold">Organización</h1>
                     <p class="font-italic text-muted mb-0">Adapta tu día a día de clases o trabajo a la perfección
                         utilizando
                         nuestro sistema de gestión de clases</p>
@@ -46,7 +46,7 @@
 
 
 
-            <div class="row">
+            <div class="row mb-5">
 
                 <form action=" {{ route('management.store') }}" method="POST">
                     @csrf
@@ -56,11 +56,9 @@
                         <div class="col-sm-6 col-lg-12 col-md-12">
                             <div class="form-group">
                                 <div class="input-group date" id="fecha" data-target-input="nearest">
-                                    <input type="text" name="date" class=" form-control datetimepicker-input"
-                                        data-target="#fecha" />
-                                    <div class="input-group-append" data-target="#fecha" data-toggle="datetimepicker">
-                                        <div class="input-group-text p-3"><i class="far fa-calendar-alt fa-lg"></i></div>
-                                    </div>
+
+                                    <input type="datetime-local" id="date" name="date" min='{{ $date . 'T00:00' }}'
+                                        class="form-control" style="height:3rem ">
                                 </div>
                             </div>
                         </div>
@@ -76,37 +74,17 @@
                 </form>
             </div>
             <x-data-users />
+
+            @if (isset($dateClass))
+                    <h1 class="pb-5">{{$dateClass}}</h1>
+            @endif
+
         </div>
 
-        
-        <script>
-            $(".target").change(function() {
-                console.log($(".target").val());
-            });
 
-        </script>
 
-<div class="container">
-    <div class="row">
-       <div class='col-sm-6'>
-          <div class="form-group">
-             <div class='input-group date' id='datetimepicker2'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-             </div>
-          </div>
-       </div>
-       <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker2').datetimepicker({
-                  locale: 'ru'
-              });
-          });
-       </script>
-    </div>
- </div>
+
+        <script src="{{ asset('js/management.js') }}"></script>
     @endsection
 
 </x-app-layout>
