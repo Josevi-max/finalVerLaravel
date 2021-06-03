@@ -26,11 +26,11 @@ class BuyController extends Controller
      */
     public function create(Request $request)
     {
-        $hecho=false;
-        if(isset($request->hecho)){
-            $hecho=$request->hecho;
+        //$hecho = false;
+        if (session("hecho")) {
+            $hecho = session("hecho");
         }
-        return view('components.log.buy',compact("hecho"));
+        return view('components.log.buy', compact( isset($hecho)?"hecho":null));
     }
 
     /**
@@ -42,17 +42,21 @@ class BuyController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $class = $user->nClases += $request->nClases;
+        $hecho = false;
 
-        if(isset($request->examAttempts))
-        $exam = $user->examAttempts += $request->examAttempts;
+
+        if (isset($request->examAttempts))
+            $exam = $user->examAttempts += $request->examAttempts;
         else
-        $exam=0;
+            $exam = 0;
 
-      if(DB::table('users')->where("id", $user->id)->update(["nClases" => $class,"examAttempts"=>$exam]))
-        $hecho=true;
-            
-       return  redirect()->route("buy.create",compact("hecho"));
+        if (is_numeric($request->nClases)){
+            $class = $user->nClases += $request->nClases;
+        if (DB::table('users')->where("id", $user->id)->update(["nClases" => $class, "examAttempts" => $exam]))
+            $hecho = true;
+        }
+        //return  redirect()->route("buy.create",compact("hecho"));
+        return  redirect()->route("buy.create")->with("hecho", $hecho);
         //return view('components.log.buy', compact("hecho"));
 
         //

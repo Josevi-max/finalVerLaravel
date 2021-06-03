@@ -1,32 +1,27 @@
-<link rel="stylesheet" href="{{ asset('css/prices.css') }}">
-<div class="mt-5  row ">
-
+<div class="mt-5  row row-cols-1 row-cols-md-3 g-4  text-center">
     @for ($i = 0; $i < count($infoPrices['icons']); $i++)
+        <div class="col-lg-4 col-sm-12  ">
+            <div class=" card {{$i!=2 ?'':'border-primary'}} ">
+                <div class="card-header {{$i!=2 ?'':'bg-primary text-light'}}">
+                    <h2 class="text-center text-uppercase">
+                        {{ $infoPrices['namePacks'][$i] }}
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">{{ $infoPrices['prices'][$i] }}€</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li >{{ $infoPrices['dataA'][$i] }} clases prácticas</li>
+                        <li >{{ $infoPrices['dataB'][$i] }} oportunidades examen</li>
+                        <li > {{ $infoPrices['dataC'][0] }}</li>
+                    </ul>
 
-
-        <div class="col-lg-4 col-sm-12 card border-3">
-
-            <div class="card-body">
-                <h1 class="{{ $infoPrices['icons'][$i] }} col-12 text-center"></h1>
-
-                <h2 class=" card-title bg-light border-bottom text-center text-uppercase">{{ $infoPrices['namePacks'][$i] }}
-                    <h1 class="text-primary h1  text-center">{{ $infoPrices['prices'][$i] }}€</h1>
-
-                </h2>
-                <ul class="text-start">
-                    <li class="fw-bold fs-5">{{ $infoPrices['dataA'][$i] }} clases prácticas</li>
-                    <li class="fw-bold fs-5">{{ $infoPrices['dataB'][$i] }} oportunidades examen</li>
-                    <li class="fw-bold fs-5"> {{ $infoPrices['dataC'][0] }}</li>
-                </ul>
-
-                <form action="{{ route('buy.store') }}" method="POST">
-                    @csrf
-                    <input type="submit" value="Comprar" class="btn btn-block btn-outline-primary d-block mx-auto">
-
-                    <input type="hidden" name="nClases" value={{ $infoPrices['dataA'][$i] }}>
-                    <input type="hidden" name="examAttempts" value={{ $infoPrices['dataB'][$i] }}>
-
-                </form>
+                    <form action="{{ route('buy.store') }}" method="POST">
+                        @csrf
+                        <input type="submit" value="Comprar" id="pack_{{ $infoPrices['namePacks'][$i] }}" class="w-100 btn btn-lg {{$i==0?'btn-outline-primary':'btn-primary'}} " onclick="return confirm('Estas a punto de comprar el pack de clases {{ $infoPrices['namePacks'][$i] }} por un valor de  {{ $infoPrices['prices'][$i] }} €')">
+                        <input type="hidden" name="nClases" value={{ $infoPrices['dataA'][$i] }}>
+                        <input type="hidden" name="examAttempts" value={{ $infoPrices['dataB'][$i] }}>
+                    </form>
+                </div>
             </div>
         </div>
     @endfor

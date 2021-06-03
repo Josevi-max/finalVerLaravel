@@ -26,10 +26,9 @@ class ManagementController extends Controller
     public function create()
     {
 
-        $dateClass=DB::table('date_class')->where("studentId", Auth::id())->get();
-       
-
-        return view('components.log.managament',compact("dateClass"))->with(session("management")?session("management"):null);
+        $dateClass=DB::table('date_class')->where("studentId", Auth::id())->orderBy("dayClass")->get();
+        $otherClass=DB::table('date_class')->where("studentId","!=", Auth::id())->orderBy("dayClass")->take(30)->get(); 
+        return view('components.log.managament',compact("dateClass","otherClass"))->with(session("management")?session("management"):null);
     }
 
     /**

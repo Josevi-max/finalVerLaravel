@@ -91,14 +91,15 @@ class AddValoration extends Controller
             $enviado="true";
 
             $note = 0;
-
+            $numberNotes=0;
             foreach ($request->except(['_token', "teacherId", "studentId"]) as $value) {
 
                 if ($value > 0)
+                    $numberNotes++;
                     $note += (int)$value;
             }
-
-            $note /= 15;
+            
+            $note /= $numberNotes;
 
 
 

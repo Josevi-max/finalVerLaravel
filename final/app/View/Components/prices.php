@@ -23,16 +23,6 @@ class prices extends Component
      */
     public function render()
     {
-        $data=[
-            
-            "names"=>["Básico","Calidad/Precio","Completo"],
-            "prices"=>["180€","300€","500€"],
-            "texts"=>[
-                "5 clases prácticas | 2 oportunidades exámen | Clases intensivas de 2 semanas",
-                "10 clases prácticas | 2 oportunidades exámen | Clases intensivas de 2 semanas",
-                "15 clases prácticas | 3 oportunidades exámen | Clases intensivas de 2 semanas"
-                ]
-        ];
         $infoPrices=[
             "namePacks"=>["Iniciado","Avanzado","Novel"],
             "icons"=>["far fa-grin-stars","fas fa-medal","fas fa-car"],

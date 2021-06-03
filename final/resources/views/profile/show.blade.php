@@ -27,12 +27,12 @@
                 <form action="{{ route('profile.update', $user->id) }}" method="POST">
                     @csrf
                     @method("PATCH")
-                    <div class="row pb-5 border-bottom pt-5">
+                    <div class="row pb-5 border-bottom border-top pt-5">
                         <div class="col-lg-6 col-md-6 col-sm-12 ">
                             <h1>Información perfil</h1>
                             <p>Actualiza datos de tu perfil tales como el nombre de usuario o el email</p>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 border rounded p-5">
+                        <div class="col-lg-6 col-md-6 col-sm-12 bg-white border rounded p-5">
                             <label>Nombre:</label>
                             <input type="text" class="mt-1 mb-4 form-control" value="{{ $user->name }}" name="name">
 
@@ -46,7 +46,7 @@
                             <h1>Actualizar contraseña</h1>
                             <p>Asegurate de introducir una contraseña la cual te acuerdes más adelante y que sea segura</p>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 mt-5 border rounded p-5">
+                        <div class="col-lg-6 col-md-6 bg-white col-sm-12 mt-5 border rounded p-5">
                             @if (Auth::user()->hasRole('Student'))
                                 <div class="col-span-6 sm:col-span-4">
                                     <label>Actual contraseña</label>
@@ -70,12 +70,12 @@
                     </div>
                     @if (Auth::user()->hasRole('Admin'))
                         <div class="row pb-5 ">
-                            <div class="col-6 mt-4 ">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mt-4 ">
                                 <h1>Administración</h1>
                                 <p>Gestiona a tus usuarios, dandole permisos especiales</p>
                             </div>
 
-                            <div class="col-6 pt-4 ">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pt-4 ">
 
                                 <div class="form-check form-switch pb-4">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">¿Quieres dar a este usuario
@@ -120,7 +120,7 @@
                         @method("DELETE")
 
                         <button type="submit" class="btn btn-danger" onclick="
-                                                return confirm('¿Estas seguro de querer borrar esta cuenta?')">Eliminar
+                                                    return confirm('¿Estas seguro de querer borrar esta cuenta?')">Eliminar
                             cuenta</button>
 
                     </form>

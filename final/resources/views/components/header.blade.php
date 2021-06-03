@@ -1,20 +1,13 @@
 <!--Estilo-->
 <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 fixed-top " id="nav">
-    <a class="navbar-brand col-lg-8 m-2" href="/"><i class="fas fa-traffic-light  fa-1x"></i> AutoApp</a>
-
-    <button class="navbar-toggler" type="button" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        &#9776;
-    </button>
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav  ">
-
-            @if (Auth::user() && Auth::user()->hasRole('Student'))
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container px-5">
+        <a class="navbar-brand h1" href="/"><i class="fas fa-traffic-light"></i> AutoApp <i class="fas fa-traffic-light"></i></a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @if (Auth::user() && Auth::user()->hasRole('Student'))
                 <div class="dropdown text-center">
                     <button class="btn text-light dropdown-toggle" type="text" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,7 +29,7 @@
             @for ($i = 0; $i < count($data['icons']); $i++)
 
                 <li class="nav-item ">
-                    <a class="nav-link text-light btn hover {{ $i + 1 == count($data['icons']) && !Auth::user() ? 'btn-primary ' : '' }} "
+                    <a class="nav-link text-light btn   {{ $i + 1 == count($data['icons']) && !Auth::user() ? 'btn-primary ' : 'hover' }} "
                         href={{ $data['links'][$i] }}><i class="{{ $data['icons'][$i] }}"></i> <br>
                         {{ $data['texts'][$i] }}</a>
                 </li>
@@ -72,7 +65,8 @@
                 </div>
 
             @endif
-
-        </ul>
+            </ul>
+        </div>
     </div>
 </nav>
+

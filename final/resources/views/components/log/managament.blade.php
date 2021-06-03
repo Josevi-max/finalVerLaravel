@@ -9,12 +9,19 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 -->
 
+<link rel="stylesheet" href="{{ asset('css/management.css') }}">
 <x-app-layout>
     @section('body')
-    
+
 
         @php
             $date = date('Y-m-d');
+            function actualDate()
+            {
+                date_default_timezone_set('Europe/Madrid');
+                $actualDate = date('Y-m-d H:i');
+                return $actualDate;
+            }
         @endphp
 
         <div class="container pt-5">
@@ -74,10 +81,66 @@
                 </form>
             </div>
             <x-data-users />
+            <div class="row   mt-5 mb-5  g-4">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="  card h-100   ">
+                        <div class="card-header bg-white">
+                            <h3 class="h5 text-uppercase font-weight-semi-bold mb-0 p-2 "><i
+                                    class="far fa-star text-primary"></i> Tus proxímas clases</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush ">
+                                @if (isset($dateClass))
+                                    @for ($i = 0; $i < count($dateClass); $i++)
+                                        @php
+                                            $class = $dateClass[$i]->dayClass;
+                                            $actualDate = actualDate();
+                                        @endphp
+                                        @if ($actualDate < $class) <li class="list-group-item blockquote border-bottom "><i
+                                                    class="far fa-clock text-success"></i> {{ date('d-m-Y H:i', strtotime($class)) }}
+                                            </li> @endif @endfor
 
-            @if (isset($dateClass))
-                    <h1 class="pb-5">{{$dateClass}}</h1>
-            @endif
+                                    @endif
+
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="  card h-100    ">
+                        <div class="card-header bg-white">
+                            <h3 class="h5 text-uppercase font-weight-semi-bold mb-0 p-2 "><i
+                                    class="fas fa-exclamation-triangle text-warning pr-2"></i> Fechas ocupadas </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush ">
+                                @if (isset($otherClass))
+                                    @for ($i = 0; $i < count($otherClass); $i++)
+                                        @php
+                                            $class = $otherClass[$i]->dayClass;
+                                            $actualDate = actualDate();
+                                        @endphp
+                                        @if ($actualDate < $class) <li
+                                            class="list-group-item blockquote border-bottom "><i
+                                            class="far fa-clock text-danger"></i>
+                                            {{ date('d-m-Y H:i', strtotime($class)) }}
+                                            </li> @endif @endfor
+
+                                    @endif
+
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
         </div>
 

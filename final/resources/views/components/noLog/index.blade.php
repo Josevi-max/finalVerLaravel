@@ -1,6 +1,5 @@
 <link rel="stylesheet" href={{ asset('css/index_nolog.css') }}>
 
-
 <div id="presentation">
     <h1 class="text-center text-light mt-3 border-bottom">Aprende a conducir y disfruta</h1>
     <a href={{ route('register') }}> <button class="btn btn-primary d-block mx-auto mt-4 "> Unete a
@@ -12,7 +11,7 @@
     <div class="mt-5  row">
 
 
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-12 ">
             <h2 class="border-bottom">¿Quienes somos?</h2>
             <p class="text-muted">Somos una autoescuela con más de 40 años en la educación de nuevos
                 conductores. Nuestro método de enseñanza está avalado por todos nuestros alumnos que han logrado

@@ -12,3 +12,9 @@ img {
 #img {
     width: 100%;
 }
+
+@media (max-width: 985px) {
+    #presentation {
+        padding-bottom: 40%;
+    }
+}

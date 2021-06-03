@@ -29,7 +29,8 @@ class dataUsers extends Component
         $data=[
             "names"=>["Clases restantes","Clases gastadas","Oportunidades"],
             "icons"=>["fas fa-user-alt","fas fa-car","fas fa-smile"],
-            "values"=>[$user->nClases,$user->classesSpent,$user->examAttempts]
+            "values"=>[$user->nClases,$user->classesSpent,$user->examAttempts],
+            "textColor"=>["text-primary","text-danger","text-warning"]
         ];
 
         
