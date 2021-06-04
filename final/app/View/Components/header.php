@@ -34,9 +34,9 @@ class header extends Component
       $role = $userb->roles->first()->name;
       if ($role == 'Student') {
         $data = [
-          "links" => [route("dashboard"),  route("contact.index")],
-          "texts" => ["Panel", "Contactanos"],
-          "icons" => ["fas fa-home",  "fas fa-file-signature"],
+          "links" => [  route("contact.index")],
+          "texts" => [ "Contactanos"],
+          "icons" => [ "fas fa-file-signature"],
           "management" => [
             "texts" => ["Clases", "Organización", "Evaluación", "Multimedía"],
             "icons" => ["fas fa-credit-card", "fas fa-calendar-week", "fas fa-check-square", "fas fa-chalkboard-teacher"],
@@ -50,9 +50,9 @@ class header extends Component
         ];
       } else {
         $data = [
-          "links" => [route("dashboard.admin")],
-          "texts" => ["Alumnos"],
-          "icons" => ["fas fa-user-graduate"]
+          "links" => [],
+          "texts" => [],
+          "icons" => []
         ];
       }
     } else {

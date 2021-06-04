@@ -26,15 +26,18 @@
 
 
             @endif
+            @if (!empty($data["icons"]))
             @for ($i = 0; $i < count($data['icons']); $i++)
 
-                <li class="nav-item ">
-                    <a class="nav-link text-light btn   {{ $i + 1 == count($data['icons']) && !Auth::user() ? 'btn-primary ' : 'hover' }} "
-                        href={{ $data['links'][$i] }}><i class="{{ $data['icons'][$i] }}"></i> <br>
-                        {{ $data['texts'][$i] }}</a>
-                </li>
+            <li class="nav-item ">
+                <a class="nav-link text-light btn   {{ $i + 1 == count($data['icons']) && !Auth::user() ? 'btn-primary ' : 'hover' }} "
+                    href={{ $data['links'][$i] }}><i class="{{ $data['icons'][$i] }}"></i> <br>
+                    {{ $data['texts'][$i] }}</a>
+            </li>
 
-            @endfor
+        @endfor 
+            @endif
+           
 
 
             @if (Auth::user())

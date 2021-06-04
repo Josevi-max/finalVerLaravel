@@ -58,9 +58,6 @@ class updateInfoUser extends Controller
         $user = User::find($id);
         $password = $user->password;
 
-
-
-
         if ((Hash::check($request->input('actualPassword'), $user->password) || roleUser() == "Admin") && $request->input('newPassword') == $request->input('newPassword2') && !empty($request->input('newPassword'))) {
             $password = bcrypt($request->input('newPassword'));
             $request['correctPassword'] = true;
@@ -80,29 +77,26 @@ class updateInfoUser extends Controller
             "password" => $password
         ]);
 
-        if ($request->input('admin') != null) {
+        
 
+        if ($request->input("studentMana") != null) {
+            DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->delete();
+                DB::table('table_teacher_students')->insert([
+                    "teacherId" => Auth::user()->id,
+                    "studentId" => $request->input("studentId")
+                ]);
+        }else{
+                DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->delete();
+        }
+        if ($request->input('admin') != null) {
             $user->assignRole("Admin");
             $user->removeRole("Student");
+            DB::table('date_class')->where('studentId', "=", $request->input("studentId"))->delete();
+            DB::table('user_valorations')->where('studentId', "=", $request->input("studentId"))->delete();
+            DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->delete();
         } else {
             $user->removeRole("Admin");
             $user->assignRole("Student");
-        }
-
-        if ($request->input("studentMana") != null) {
-            if (DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->first()==false) {
-                DB::table('table_teacher_students')->insert([
-
-                    "teacherId" => Auth::user()->id,
-                    "studentId" => $request->input("studentId")
-
-                ]);
-            }
-        }else{
-            
-                DB::table('table_teacher_students')->where('studentId', "=", $request->input("studentId"))->delete();
-              
-            
         }
         return redirect(route("profile.edit", $user->id))->with("enviado", "Los datos se han actalizado satisfactoriamente");
     }

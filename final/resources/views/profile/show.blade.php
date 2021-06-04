@@ -84,25 +84,22 @@
                                         {{ $user->hasRole('Admin') ? 'checked' : '' }}>
 
                                 </div>
-
-
                                 @if ($user->hasRole('Student'))
-
-
+                                    @php
+                                        $myStudent=DB::table('table_teacher_students')->where('studentId', '=', $user->id)->where('teacherId','=',Auth::id())->first();
+                                        $actualTeacher=DB::table('table_teacher_students')->where('studentId', '=', $user->id)->get();
+                                        if (isset($actualTeacher[0]->teacherId)) {
+                                            $nameTeacher=DB::table('users')->where("id","=",$actualTeacher[0]->teacherId)->get("name");
+                                        }
+                                    @endphp
                                     <div class="form-check form-switch">
                                         <label class="form-check-label" for="flexSwitchCheckChecked">¿Gestionar
-                                            alumno?</label>
+                                            alumno? {{isset($nameTeacher[0]->name) && $nameTeacher[0]->name!=Auth::user()->name?'(gestionado por '.$nameTeacher[0]->name.')':''}} </label>
                                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
                                             name="studentMana"
-                                            {{ DB::table('table_teacher_students')->where('studentId', '=', $user->id)->first() != false
-    ? 'checked'
-    : '' }}>
-
+                                            {{ $myStudent != false? 'checked': '' }}>
                                     </div>
                                     <input type="hidden" value={{ $user->id }} name="studentId">
-
-
-
                             </div>
                     @endif
             </div>
