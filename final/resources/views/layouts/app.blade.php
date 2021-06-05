@@ -16,7 +16,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!--CSS generico-->
     <link rel="stylesheet" href="{{ asset('css/generic.css') }}">
-
+    
+    <link rel="icon" href="{{ asset('images/favicon.png') }}">
     <title>Autoapp</title>
     
 

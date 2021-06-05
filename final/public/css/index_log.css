@@ -1,26 +1,9 @@
 main {
-    background-image: url("../images/backSession.jpg");
+    background-image: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../images/backSession.jpg");
     background-size: cover;
     background-position: center;
     padding: 3%;
     color: white;
     text-align: center;
     background-repeat: no-repeat;
-    position: relative;
-}
-
-main:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: black;
-    opacity: 0.8;
-}
-
-main .text {
-    color: #fff;
-    position: relative
 }

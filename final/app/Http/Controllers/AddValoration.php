@@ -101,10 +101,6 @@ class AddValoration extends Controller
             
             $note /= $numberNotes;
 
-
-
-
-
             if (UserValoration::where('studentId', '=', $user)->exists()) {
                 DB::table("user_valorations")->where('studentId', '=', $user)
                     ->update([
@@ -125,8 +121,6 @@ class AddValoration extends Controller
                         "safeDriving" => $request->safeDriving,
                         "comments" => $request->comments,
                         "note" => $note,
-
-                        //  $request->except(['_token',"teacherId","studentId","note"])
                     ]);
             } else {
 
@@ -153,13 +147,9 @@ class AddValoration extends Controller
                         /* $request->except(['_token',"note"]),*/
                         "note" => $note
 
-
-
-
                     ]);
             }
         }
         return  redirect()->route("valoration.create", ['id' => $user])->with("enviado",$enviado);
-       // return  redirect()->route("valoration.create", ['id' => $user])->with("enviado", "Los datos se agregaron correctamente");
     }
 }

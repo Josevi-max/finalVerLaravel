@@ -11,7 +11,7 @@
                     @csrf
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Buscar usuarios">
-                        <input type="submit" class="btn btn-primary" value="Buscar">
+                        <button type="submit" class="btn btn-primary"><i class='fas fa-search '></i></button>
                     </div>
                 </form>
                 <form action="{{ route('dashboard.admin') }}" method="GET" class="col-6 d-inline">
@@ -51,13 +51,7 @@
             <div class="d-flex justify-content-center mt-3 border-top pt-3 border-dark  pagination-sm">
                 {!! $users->appends(request()->input())->onEachSide(1)->links() !!}
             </div>
-        </main>
-
-    @endsection
-
-</x-app-layout>
-
-<!-- Modal -->
+            <!-- Modal -->
 <div class="modal fade  modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -90,3 +84,10 @@
         </div>
     </div>
 </div>
+        </main>
+
+    @endsection
+
+</x-app-layout>
+
+

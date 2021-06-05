@@ -31,12 +31,7 @@ class updateInfoUser extends Controller
      */
     public function edit($id)
     {
-
-
         $user = User::findOrFail($id);
-        /*   $actualUser=User::find(Auth::user()->id);
-        $admin=$actualUser->roles()->get();*/
-
 
         if ($user->id == Auth::user()->id || roleUser() == "Admin") {
             return view("profile.show", compact("user"))->with(session("enviado") ? session("enviado") : null);

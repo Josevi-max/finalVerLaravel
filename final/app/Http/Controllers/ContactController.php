@@ -39,6 +39,4 @@ class ContactController extends Controller
         
         return view("emails.formEmail",compact("enviado"));
     }
-
-  
 }
