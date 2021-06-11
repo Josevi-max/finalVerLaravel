@@ -1,0 +1,10 @@
+.card-body {
+    overflow: auto;
+    max-height: 380px;
+}
+
+header {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/valorationsBack.jpg");
+    background-position: top;
+    background-size: cover;
+}

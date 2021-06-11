@@ -1,0 +1,20 @@
+main {
+    background-size: cover;
+    background-position: center;
+    padding: 5%;
+    text-align: center;
+}
+
+.height {
+    height: 20rem;
+}
+
+#desaparece {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    #desaparece {
+        display: none;
+    }
+}

@@ -1,0 +1,14 @@
+header {
+    background-image: url("../images/backNote.jpg");
+    background-position: center;
+}
+
+#img {
+    width: 15%;
+}
+
+@media (max-width: 768px) {
+    #img {
+        width: 25%;
+    }
+}
