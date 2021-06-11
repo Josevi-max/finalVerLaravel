@@ -1,4 +1,4 @@
-<link rel="stylesheet" href={{ asset('css/buy.css') }}>
+<link rel="stylesheet" href={{ secure_asset('css/buy.css') }}>
 <x-app-layout>
     @section('body')
         <main class=" container  mt-5">
@@ -31,7 +31,7 @@
                                     <div class="input-group ">
                                         <input type="number" id="amount" class="form-control " value="1" name="nClases"
                                             min="1">
-                                        <input type="submit" id="buy" class=" btn btn-primary fas" value="Comprar">
+                                        <input type="submit" id="buy" class=" btn btn-primary fas" value="Comprar" >
                                     </div>
                                 </form>
                             </div>

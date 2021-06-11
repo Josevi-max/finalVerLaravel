@@ -1,4 +1,4 @@
-<link rel="stylesheet" href={{ asset('css/buy.css') }}>
+<link rel="stylesheet" href={{ secure_asset('css/buy.css') }}>
 <x-app-layout>
     @section('body')
         <main class="container">
@@ -69,15 +69,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @for ($i = 0; $i < count($nextClass); $i++)
-                        <tr>
-                            <td>{{App\Models\User::find($nextClass[$i]->studentId)->name}}</td>
-                            <td>{{App\Models\User::find($nextClass[$i]->studentId)->email}}</td>
-                            <td> {{$nextClass[$i]->dayClass}}</td>
-                          </tr>
-                        @endfor
-                       
-                      
+                        @if ($nextClass!=null)
+                            @for ($i = 0; $i < count($nextClass); $i++)
+                                <tr>
+                                    <td>{{App\Models\User::find($nextClass[$i]->studentId)->name}}</td>
+                                    <td>{{App\Models\User::find($nextClass[$i]->studentId)->email}}</td>
+                                    <td> {{$nextClass[$i]->dayClass}}</td>
+                                </tr>
+                            @endfor
+                        @endif
                     </tbody>
                   </table>
             </div>

@@ -5,7 +5,7 @@ use App\Models\User;
 
 use Illuminate\View\Component;
 
-class updateProfile extends Component
+class UpdateProfile extends Component
 {
     /**
      * Create a new component instance.

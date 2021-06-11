@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/evaluation.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/evaluation.css') }}">
 @php
 $note = -1;
 
@@ -14,7 +14,8 @@ if (isset($data[0]->note)) {
     @case( $note < 5)
         {{ $image = 'images/badProgress.png' }}
     @break
-    @case($note<8) {{ $image = 'images/neutralProgress.png' }} @break
+    @case($note<8) {{ $image = 'images/neutralProgress.png' }}
+     @break
 @default {{ $image = 'images/goodProgress.png' }} @endswitch <x-app-layout>
 @section('body')
     <header class="py-5 text-white border-bottom mb-4">
@@ -23,7 +24,7 @@ if (isset($data[0]->note)) {
                 <h1 class="fw-bolder">Bienvenido a la sección de evaluaciones</h1>
                 <p class="lead mb-0">Aquí podras revisar tu progreso, recibir consejos valiosos de tu profesor, así como
                     hacerte una idea de cuan preparado vas para el examen</p>
-                <img id="img" src="{{ asset($image) }}" alt="" class="mx-auto d-block mt-5">
+                <img id="img" src="{{ secure_asset($image) }}" alt="" class="mx-auto d-block mt-5">
             </div>
         </div>
     </header>
@@ -53,7 +54,7 @@ if (isset($data[0]->note)) {
                                             $color = 'bg-success';
                                         @endphp 
                                         @endswitch
-                                         @if ($value != 0 && !str_contains($key, 'Id') && !str_contains($key, 'id') && $key != 'note')
+                                         @if ($value != 0 && !str_contains($key, 'Id') && $key!='id' && $key != 'note' && $key!="comments")
                                         @php
                                             $translation = [
                                                 'incorporationCirculation' => 'Incorporación a la circulación',
@@ -68,12 +69,13 @@ if (isset($data[0]->note)) {
                                                 'preliminaryChecks' => 'Comprobaciones prevías',
                                                 'installationVehicle' => 'Instalación en el vehiculo',
                                                 'normalProgression' => 'Progresión normal',
-                                                'sideShift' => 'Giros',
+                                                'sideShift' => 'Desplazamiento lateral',
                                                 'overTaking' => 'Adelantamientos',
                                                 'lights' => 'Luces',
                                             ];
                                         @endphp
                                         <li class="list-group-item">
+                                            
                                             <label class=" form-label col-11 fs-4">{{ $translation[$key] }}</label>
                                             <label class="form-label col fs-4">{{ $value }}</label>
                                             <div class="progress mt-3 mb-3" style="height: 20px;">

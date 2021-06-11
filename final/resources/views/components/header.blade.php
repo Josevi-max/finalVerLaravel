@@ -1,5 +1,5 @@
 <!--Estilo-->
-<link rel="stylesheet" href="{{ asset('css/header.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('css/header.css') }}" />
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container px-5">

@@ -86,21 +86,19 @@ class AddValoration extends Controller
     {
 
         $user = $request->studentId;
-            $enviado="false";
+        $enviado = "false";
         if (canValoration($user)) {
-            $enviado="true";
-
+            $enviado = "true";
+            $numberTries = 0;
             $note = 0;
-            $numberNotes=0;
             foreach ($request->except(['_token', "teacherId", "studentId"]) as $value) {
-
-                if ($value > 0)
-                    $numberNotes++;
+                if ($value > 0 && is_numeric($value)) {
+                    $numberTries++;
                     $note += (int)$value;
+                }
             }
+                $note = intval($note / $numberTries);
             
-            $note /= $numberNotes;
-
             if (UserValoration::where('studentId', '=', $user)->exists()) {
                 DB::table("user_valorations")->where('studentId', '=', $user)
                     ->update([
@@ -150,6 +148,6 @@ class AddValoration extends Controller
                     ]);
             }
         }
-        return  redirect()->route("valoration.create", ['id' => $user])->with("enviado",$enviado);
+        return  redirect()->route("valoration.create", ['id' => $user])->with("enviado", $enviado);
     }
 }

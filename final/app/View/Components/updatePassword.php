@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class updatePassword extends Component
+class UpdatePassword extends Component
 {
     /**
      * Create a new component instance.

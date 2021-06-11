@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class managament extends Component
+class Managament extends Component
 {
     /**
      * Create a new component instance.

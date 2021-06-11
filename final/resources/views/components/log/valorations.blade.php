@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/valorations.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/valorations.css') }}">
 <x-app-layout>
     @section('body')
 
@@ -29,7 +29,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="card ">
+                            <div class="card mb-5">
                                 <div class="card-header">
                                     Incorporación y preparaciones <i class="fas fa-map-marked-alt"></i>
                                 </div>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="card ">
+                            <div class="card mb-5">
                                 <div class="card-header">
                                     Maniobras <i class="fas fa-compress"></i>
                                 </div>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="card ">
+                            <div class="card mb-5">
                                 <div class="card-header">
                                     Control vehiculo <i class="fas fa-car-crash"></i>
                                 </div>

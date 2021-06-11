@@ -2,7 +2,7 @@
 <main>
     <div class=" row mx-auto " id="form">
         
-        <img src={{ asset('images/imgRegister.jpg') }} alt="Presentation">
+        <img src={{ secure_asset('images/imgRegister.jpg') }} alt="Presentation">
         <app-template class="col-12 ">
 @section('h2')
 <h2 class="text-center">Registrate</h2>

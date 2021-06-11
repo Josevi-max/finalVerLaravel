@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
-class header extends Component
+class Header extends Component
 {
   /**
    * Create a new component instance.

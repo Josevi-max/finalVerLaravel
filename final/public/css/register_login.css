@@ -13,7 +13,6 @@ main {
 
 img {
     width: 50%;
-    height: 30rem;
 }
 
 .alert {
@@ -25,6 +24,7 @@ img {
         display: none;
     }
     #form {
+        width: 80%;
         margin-top: 20%;
         padding-top: 0%;
         padding-bottom: 2%;

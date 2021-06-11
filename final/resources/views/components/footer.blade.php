@@ -16,12 +16,12 @@
                 <h5>Social</h5>
 
               @for ($i = 0; $i < count($socialNetworks["icons"]); $i++)
-             <a  href="{{$socialNetworks["links"][$i]}}" class="p-2 "> <i class="{{$socialNetworks['icons'][$i]}} fa-2x "></i></a>
+             <a target="_blank" href="{{$socialNetworks["links"][$i]}}" class="p-2 "> <i class="{{$socialNetworks['icons'][$i]}} fa-2x "></i></a>
 
              @endfor
 
             </div>
-            <p class=" col-12 text-center mt-3 border-top ">Diseñado por Josevi ©</p>
+            <p class=" col-12 text-center mt-3 border-top ">Realizado por Josevi ©</p>
         </div>
     </div>
 </div>

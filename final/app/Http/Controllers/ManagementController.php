@@ -38,7 +38,7 @@ class ManagementController extends Controller
         $nClass = DB::table('users')->where("id", "=", Auth::id())->get("nClases");
         $classesSpent=DB::table('users')->where("id", "=", Auth::id())->get("classesSpent");
         if($nClass[0]->nClases < 1){
-            $management = "Parece que no tienes clases suficientes en tu cartera, aprovecha de nuestras ofertas en la sección de 'clases'";
+            $management = "Parece que no tienes clases suficientes en tu cartera, aprovecha de nuestras ofertas en la sección de <a href=".route('buy.create').">clases</a>" ;
         }elseif(DB::table('date_class')->where("dayClass", "=", $date)->exists()){
             $management = "La fecha que has seleccionado no es válida, prueba con otra fecha u hora";
         }elseif(substr($date, 0,10)==substr($actualDate, 0,10)){

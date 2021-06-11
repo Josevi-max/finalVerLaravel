@@ -1,4 +1,4 @@
-<link rel="stylesheet" href={{ asset('css/buy.css') }}>
+<link rel="stylesheet" href={{ secure_asset('css/buy.css') }}>
 
 <x-app-layout>
 
@@ -19,7 +19,7 @@
 
                 @if ($user->hasRole('Student'))
                     <div class="border-bottom mb-5">
-                        <x-data-users />
+                        <x-data-users :user=$user />
                     </div>
                 @endif
 
@@ -41,7 +41,7 @@
 
                         </div>
                     </div>
-                    <div class="row pb-5 border-bottom  ">
+                    <div class="row pb-5 border-bottom">
                         <div class="col-lg-6 col-md-6 mt-5 col-sm-12">
                             <h1>Actualizar contraseña</h1>
                             <p>Asegurate de introducir una contraseña la cual te acuerdes más adelante y que sea segura</p>

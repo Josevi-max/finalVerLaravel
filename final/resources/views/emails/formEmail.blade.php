@@ -1,6 +1,6 @@
    <!--Estilo generico-->
 
-   <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+   <link rel="stylesheet" href="{{ secure_asset('css/contact.css') }}">
    <x-app-layout>
        @section('body')
 

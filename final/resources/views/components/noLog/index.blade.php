@@ -1,4 +1,4 @@
-<link rel="stylesheet" href={{ asset('css/index_nolog.css') }}>
+<link rel="stylesheet" href={{ secure_asset('css/index_nolog.css') }}>
 
 <div id="presentation">
     <h1 class="text-center text-light mt-3 border-bottom">Aprende a conducir y disfruta</h1>
@@ -21,7 +21,7 @@
             </p>
         </div>
 
-        <img src="{{ asset('images/WhoAreMe.jpg') }}" alt="whoAreMe" class="col-lg-6 col-12">
+        <img src="{{ secure_asset('images/WhoAreMe.jpg') }}" alt="whoAreMe" class="col-lg-6 col-12">
 
     </div>
     <div class="mt-5 text-center  row">
@@ -45,10 +45,10 @@
 
         </div>
 
-        <img src="{{ asset('images/whoeAreMe.jpg') }}" alt="whoAreMe" class="col-lg-6 col-12  ">
+        <img src="{{ secure_asset('images/whoeAreMe.jpg') }}" alt="whoAreMe" class="col-lg-6 col-12  ">
 
     </div>
-    <h2 class=" text-center border-bottom col-12 mt-5"> Nuestras ofertas </h2>
+    <h2 class=" text-center border-bottom text-uppercase col-12 mt-5"> Nuestras ofertas </h2>
     <div class="mb-5">
         <x-prices />
     </div>
